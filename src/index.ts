@@ -1,6 +1,6 @@
 import removeDecorators from './parse/removeDecorators.js';
 import redecorate from './parse/redecorate.js';
-import compile from './solc.js';
+import { compile } from './solc.js';
 
 import checks from './transformers/checks.js';
 import ownership from './transformers/ownership.js';
@@ -8,7 +8,7 @@ import toCircuit from './transformers/toCircuit.js';
 import toContract from './transformers/toContract.js';
 import toOrchestration from './transformers/toOrchestration.js';
 
-const zappify = (options: any) => {
+const zappify = async(options: any) => {
 
   process.on('uncaughtException', err => {
     console.log(err);
@@ -17,7 +17,7 @@ const zappify = (options: any) => {
 
   const { deDecoratedFile, toRedecorate } = removeDecorators(options);
 
-  const solAST = compile(deDecoratedFile, options);
+  const solAST = await compile(deDecoratedFile, options);
 
   const zolAST = redecorate(solAST, toRedecorate, options);
 
