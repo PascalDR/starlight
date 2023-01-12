@@ -4,11 +4,13 @@
   "description": "Create a zApp from Solidity",
   "main": "bin/index.mjs",
   "scripts": {
+    "build": "tsc",
     "write-vk": "node /app/write-vk.mjs -i assign",
     "test": "mocha",
     "test-prelim": "mocha --inline-diffs --require @babel/register ./test/prelim-traversals/index.mjs",
     "test-prelim-lite": "mocha --require @babel/register ./test/prelim-traversals/index.mjs",
     "test-unit": "ts-mocha test/**/*.test.ts",
+    "docs": "typedoc --entryPointStrategy expand --out ./docs ./src",
     "format": "prettier --write \"**/*.{json,css,scss,md}\"",
     "lint": "eslint ."
   },
@@ -79,7 +81,8 @@
     "eslint": "^7.26.0",
     "eslint-config-codfish": "^9.0.2",
     "mocha": "^8.4.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "typedoc": "^0.23.24"
   },
   "babel": {
     "presets": [
